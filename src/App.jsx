@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import TodoForm from './components/Todos/TodoForm';
 import TodoActions from './components/Todos/TodoActions';
+import TodoList from './components/Todos/TodoList';
 
 import './App.css';
 
@@ -53,8 +54,18 @@ function App() {
         <TodoActions
           completelTodosExist={!!completedTodosCount}
           resetTodo={resetTodoHandler}
-          deletCompletedTodos={deletCompletedTodosHandler}
+          deleteCompletedTodos={deletCompletedTodosHandler}
         />
+      )}
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodoHandler}
+        toggleTodo={toggleTodoHandler}
+      />
+      {!!completedTodosCount && (
+        <h2>{`You have completed ${completedTodosCount} ${
+          completedTodosCount > 1 ? 'todos' : 'todo'
+        }`}</h2>
       )}
     </div>
   );
