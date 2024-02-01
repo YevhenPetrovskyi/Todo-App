@@ -18,6 +18,32 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  const deleteTodoHandler = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const toggleTodoHandler = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, isCompleted: !todo.isCompleted }
+          : { ...todo }
+      )
+    );
+  };
+
+  const resetTodoHandler = () => {
+    setTodos([]);
+  };
+
+  const deletCompletedTodosHandler = () => {
+    setTodos(todos.filter(({ isCompleted }) => !isCompleted));
+  };
+
+  const completedTodosCount = todos.filter(
+    ({ isCompleted }) => isCompleted
+  ).length;
+
   return (
     <div className="App">
       <h1>Todo App</h1>
